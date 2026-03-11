@@ -250,11 +250,6 @@ main section {
   background: linear-gradient(180deg, rgba(245, 226, 170, 0.44), rgba(255, 251, 242, 0.92));
 }
 
-.hero-quote-card p {
-  margin-top: 8px;
-  font-size: 0.98rem;
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
