@@ -367,6 +367,27 @@ main section {
   font-weight: 500;
 }
 
+.hero-summary-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.hero-summary-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(143, 106, 19, 0.14);
+  background: rgba(255, 252, 247, 0.86);
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
 .section-heading h2,
 .contact h2 {
   font-size: clamp(1.8rem, 3.1vw, 3rem);
@@ -739,6 +760,16 @@ main section {
   .hero-panel {
     max-width: none;
   }
+
+  .hero-summary-list {
+    gap: 8px;
+  }
+
+  .hero-summary-list span {
+    min-height: 32px;
+    padding: 0 10px;
+    font-size: 0.88rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -773,6 +804,14 @@ main section {
 
   .hero-aside {
     padding: 14px;
+  }
+
+  .hero-panel > div {
+    padding: 12px 12px 10px;
+  }
+
+  .hero-summary-list span {
+    white-space: normal;
   }
 
   .floating-cta {
