@@ -311,7 +311,9 @@ main section {
 
 .hero-panel {
   margin-top: 24px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: fit-content;
+  max-width: 100%;
+  grid-template-columns: repeat(3, minmax(112px, 140px));
   gap: 12px;
 }
 
@@ -350,20 +352,25 @@ main section {
 }
 
 .hero-panel > div {
-  padding: 14px 16px;
+  min-height: 104px;
+  padding: 14px 14px 12px;
   border-radius: 16px;
   background: rgba(255, 252, 247, 0.62);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hero-panel .panel-label {
   font-size: 11px;
   letter-spacing: 0.12em;
+  line-height: 1.4;
 }
 
 .hero-panel strong {
   margin-top: 6px;
-  font-size: 0.96rem;
-  line-height: 1.45;
+  font-size: 0.92rem;
+  line-height: 1.35;
 }
 
 .section-heading h2,
@@ -736,7 +743,9 @@ main section {
   }
 
   .hero-panel {
+    width: 100%;
     gap: 10px;
+    grid-template-columns: 1fr;
   }
 }
 
