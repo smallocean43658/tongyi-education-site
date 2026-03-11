@@ -310,8 +310,9 @@ main section {
 }
 
 .hero-panel {
-  margin-top: 36px;
+  margin-top: 24px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .hero-panel > div,
@@ -346,6 +347,23 @@ main section {
   margin-top: 10px;
   font-size: 1.05rem;
   color: var(--text);
+}
+
+.hero-panel > div {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 252, 247, 0.62);
+}
+
+.hero-panel .panel-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.hero-panel strong {
+  margin-top: 6px;
+  font-size: 0.96rem;
+  line-height: 1.45;
 }
 
 .section-heading h2,
@@ -715,6 +733,10 @@ main section {
   .faq,
   .contact {
     padding: 24px;
+  }
+
+  .hero-panel {
+    gap: 10px;
   }
 }
 
