@@ -368,24 +368,26 @@ main section {
 }
 
 .hero-summary-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, max-content));
   gap: 8px;
   margin-top: 8px;
+  justify-content: start;
 }
 
 .hero-summary-list span {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 34px;
-  padding: 0 12px;
+  padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid rgba(143, 106, 19, 0.14);
   background: rgba(255, 252, 247, 0.86);
   color: var(--text);
   font-size: 0.9rem;
   line-height: 1.35;
-  white-space: nowrap;
+  text-align: center;
 }
 
 .section-heading h2,
@@ -762,6 +764,7 @@ main section {
   }
 
   .hero-summary-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
 
@@ -811,7 +814,6 @@ main section {
   }
 
   .hero-summary-list {
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
