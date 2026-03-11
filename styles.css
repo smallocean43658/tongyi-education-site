@@ -29,6 +29,8 @@ body {
     radial-gradient(circle at top left, rgba(215, 177, 76, 0.18), transparent 28%),
     radial-gradient(circle at top right, rgba(255, 255, 255, 0.8), transparent 32%),
     linear-gradient(180deg, #f8f4e8 0%, #f2ead7 48%, #f8f2e4 100%);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  animation: ambientShift 18s ease-in-out infinite alternate;
 }
 
 img {
@@ -57,6 +59,26 @@ a {
   gap: 24px;
   padding: 18px 0;
   backdrop-filter: blur(18px);
+  transition: background-color 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.topbar::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(143, 106, 19, 0.18), transparent);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.topbar.is-scrolled {
+  background: rgba(248, 242, 228, 0.72);
+  box-shadow: 0 10px 30px rgba(88, 66, 21, 0.08);
+}
+
+.topbar.is-scrolled::after {
+  opacity: 1;
 }
 
 .brand {
@@ -91,6 +113,22 @@ main section {
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.hero::before,
+.overview::before,
+.mentors::before,
+.faq::before,
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: -35% auto auto -12%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(215, 177, 76, 0.13), transparent 68%);
+  pointer-events: none;
+  animation: glowFloat 12s ease-in-out infinite;
 }
 
 .hero {
@@ -151,7 +189,11 @@ main section {
   padding: 0 22px;
   border-radius: 999px;
   font-size: 14px;
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .button:hover,
@@ -166,6 +208,13 @@ main section {
   background: var(--accent);
   color: #fffdf8;
   box-shadow: 0 12px 32px rgba(199, 154, 43, 0.25);
+}
+
+.button-primary:hover,
+.button-primary:focus-visible,
+.floating-cta:hover,
+.floating-cta:focus-visible {
+  box-shadow: 0 18px 40px rgba(199, 154, 43, 0.32);
 }
 
 .button-secondary {
@@ -193,6 +242,17 @@ main section {
   border-radius: 20px;
   border: 1px solid rgba(143, 106, 19, 0.12);
   background: rgba(255, 252, 247, 0.8);
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+}
+
+.hero-panel > div:hover,
+.card:hover,
+.feature:hover,
+.mentor-card:hover,
+.qr-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(143, 106, 19, 0.22);
+  box-shadow: 0 18px 38px rgba(88, 66, 21, 0.11);
 }
 
 .hero-panel strong,
@@ -253,6 +313,17 @@ main section {
   color: var(--accent-deep);
   font-size: 0.9rem;
   letter-spacing: 0.12em;
+  position: relative;
+  overflow: hidden;
+}
+
+.mentor-photo-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 48%, transparent 76%);
+  transform: translateX(-130%);
+  animation: shimmer 3.8s ease-in-out infinite;
 }
 
 .list-card ul {
@@ -333,6 +404,12 @@ main section {
 
 .qr-card img {
   border-radius: 18px;
+  transition: transform 320ms ease, filter 320ms ease;
+}
+
+.qr-card:hover img {
+  transform: scale(1.02);
+  filter: saturate(1.04);
 }
 
 .qr-card p {
@@ -359,6 +436,7 @@ main section {
   min-height: 48px;
   padding: 0 18px;
   border-radius: 999px;
+  animation: ctaPulse 3.2s ease-in-out infinite;
 }
 
 .reveal {
@@ -370,6 +448,136 @@ main section {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 560ms ease,
+    transform 560ms ease;
+  transition-delay: var(--stagger-delay, 0ms);
+}
+
+.reveal.is-visible .stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.reveal .eyebrow,
+.hero.reveal h1,
+.hero.reveal .hero-copy,
+.hero.reveal .hero-actions,
+.hero.reveal .hero-panel {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.hero.reveal.is-visible .eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 80ms;
+}
+
+.hero.reveal.is-visible h1 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 160ms;
+}
+
+.hero.reveal.is-visible .hero-copy {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 240ms;
+}
+
+.hero.reveal.is-visible .hero-actions {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 320ms;
+}
+
+.hero.reveal.is-visible .hero-panel {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 420ms;
+}
+
+@keyframes ambientShift {
+  from {
+    background-position: 0% 0%, 100% 0%, 50% 0%;
+  }
+
+  to {
+    background-position: 4% 2%, 96% 2%, 50% 100%;
+  }
+}
+
+@keyframes glowFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translate3d(14px, 12px, 0) scale(1.08);
+    opacity: 0.55;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-130%);
+  }
+
+  55%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .floating-cta,
+  .hero::before,
+  .overview::before,
+  .mentors::before,
+  .faq::before,
+  .contact::before,
+  .mentor-photo-placeholder::after {
+    animation: none;
+  }
+
+  .button,
+  .hero-panel > div,
+  .card,
+  .feature,
+  .mentor-card,
+  .qr-card,
+  .qr-card img,
+  .reveal,
+  .stagger-item,
+  .hero.reveal .eyebrow,
+  .hero.reveal h1,
+  .hero.reveal .hero-copy,
+  .hero.reveal .hero-actions,
+  .hero.reveal .hero-panel,
+  .topbar {
+    transition: none;
+  }
 }
 
 @media (max-width: 900px) {
